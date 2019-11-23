@@ -1,0 +1,24 @@
+{
+  "name": "carlosas/phpat-parser",
+  "type": "library",
+  "description": "PHPAT Parser",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Carlos Alandete Sastre",
+      "email": "carlos.alandete@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "ext-tokenizer": "*"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPATParser\\": "src/"
+    }
+  }
+}
