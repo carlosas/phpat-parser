@@ -2,7 +2,7 @@
 
 namespace PHPATParser;
 
-class Parser
+class FqcnParser
 {
     private $lastTokenType = '';
     private $namespace = '';
@@ -45,7 +45,7 @@ class Parser
                 break;
             case 'T_CLASS':
                 $this->classname = $token[1];
-                $this->classesFound[] = new ClassDefinition($this->namespace, $this->classname);
+                $this->classesFound[] = new Fqcn($this->namespace, $this->classname);
         }
 
         $this->lastTokenType = token_name($token[0]);

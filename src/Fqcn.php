@@ -2,7 +2,7 @@
 
 namespace PHPATParser;
 
-class ClassDefinition
+class Fqcn
 {
     /**
      * @var string
