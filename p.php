@@ -15,9 +15,15 @@ namespace Tests\PhpAT\functional\PHP7\fixtures;
 class SimpleClass
 {
 }
+
+class AnotherClass
+{
+}
 ";';
 
 $parser = new PHPATParser\Parser();
-$definition = $parser->parse($code);
+$definitions = $parser->parse($code);
 
-echo $definition->getNamespace() . '\\' . $definition->getClassname() . PHP_EOL;
+foreach ($definitions as $definition) {
+    echo $definition->getNamespace() . '\\' . $definition->getClassname() . PHP_EOL;
+}

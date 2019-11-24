@@ -7,27 +7,29 @@ class Parser
     private $lastTokenType = '';
     private $namespace = '';
     private $classname = '';
+    private $classesFound = [];
 
-    public function parse(string $code): ClassDefinition
+    /**
+     * @param string $code
+     * @return ClassDefinition[]
+     */
+    public function parse(string $code): array
     {
         $tokens = token_get_all($code);
 
         foreach ($tokens as $token) {
-            if (is_array($token)) {
-                $this->proccess($token);
-            }
+            $this->proccess($token);
         }
 
-        $definition = new ClassDefinition(
-            $this->namespace,
-            $this->classname
-        );
-
-        return $definition;
+        return $this->classesFound;
     }
 
-    private function proccess(array $token)
+    private function proccess($token)
     {
+        if (!is_array($token)) {
+            return;
+        }
+
         $currentTokenName = token_name($token[0]);
 
         if ($currentTokenName === 'T_WHITESPACE') {
@@ -43,6 +45,7 @@ class Parser
                 break;
             case 'T_CLASS':
                 $this->classname = $token[1];
+                $this->classesFound[] = new ClassDefinition($this->namespace, $this->classname);
         }
 
         $this->lastTokenType = token_name($token[0]);
