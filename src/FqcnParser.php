@@ -26,6 +26,10 @@ class FqcnParser
 
     private function proccess($token)
     {
+        if (($token === '(' || $token === '{') && $this->lastTokenType === 'T_CLASS') {
+            $this->lastTokenType = 'T_VARIABLE';
+        }
+
         if (!is_array($token)) {
             return;
         }

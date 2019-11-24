@@ -9,6 +9,9 @@ namespace Tests\PHPATParser;
 
 class SimpleClass {}
 
+$obja = new class() {};
+$objb = new class {};
+
 class AnotherClass {}';
 
 $parser = new PHPATParser\FqcnParser();
