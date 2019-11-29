@@ -11,7 +11,7 @@ class FqcnParser
 
     /**
      * @param string $code
-     * @return ClassDefinition[]
+     * @return Fqcn[]
      */
     public function parse(string $code): array
     {
@@ -50,6 +50,7 @@ class FqcnParser
             case 'T_CLASS':
                 $this->classname = $token[1];
                 $this->classesFound[] = new Fqcn($this->namespace, $this->classname);
+                $this->namespace = '';
         }
 
         $this->lastTokenType = token_name($token[0]);
